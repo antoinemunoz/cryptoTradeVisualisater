@@ -41,7 +41,7 @@ class binanceClass:
 
         if USDT > 15:
             writeFile("log.txt", "go long with " + str(eth_price["price"]) + " at " + str(datetime.now()))
-            # self.client.order_market_buy(symbol="ETHUSDT", quantity=truncate(USDT / float(eth_price["price"]), 4))
+            self.client.order_market_buy(symbol="ETHUSDT", quantity=truncate(USDT / float(eth_price["price"]), 4))
 
     def short(self):
         eth_price = self.client.get_symbol_ticker(symbol="ETHUSDT")
@@ -49,4 +49,4 @@ class binanceClass:
 
         if ETH > 0.01:
             writeFile("log.txt", "go short at " + str(eth_price["price"]) + " at " + str(datetime.now()))
-            # self.client.order_market_sell(symbol="ETHUSDT", quantity=ETH)
+            self.client.order_market_sell(symbol="ETHUSDT", quantity=ETH)
