@@ -4,6 +4,8 @@ import pandas as pd
 class Strategie(ABC):
     def __init__(self, period):
         self._indicators = {}
+        self._StopLoss = 0
+        self._TakeProfit = 0
         self._period = period
 
     def addIndicator(self, name, indicator):
@@ -21,6 +23,18 @@ class Strategie(ABC):
     def update(self, OHLCV):
         for indicator in self._indicators.values():
             indicator.update(OHLCV)
+
+    def addStopLoss(self, stopLoss):
+        self._StopLoss = stopLoss
+
+    def getStopLoss(self):
+        return self._StopLoss
+
+    def addTakeProfit(self, takeProfit):
+        self._TakeProfit = takeProfit
+
+    def getTakeProfit(self):
+        return self._TakeProfit
 
     @abstractmethod
     def execute(self, OHLCV):
