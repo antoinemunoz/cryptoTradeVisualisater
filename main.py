@@ -1,12 +1,14 @@
 from Strategys.BBStrategy import BBStrategy
 from Strategys.RSIStrategy import RSIStrategy
+from Strategys.ExoStrategie import ExoStrategie
 
 import sys
 import pandas as pd
 
 def main(OHLCV):
     # strategy = BBStrategy(20)
-    strategy = RSIStrategy(14, 70, 30)
+    # strategy = RSIStrategy(14, 70, 30)
+    strategy = ExoStrategie(0.18, 20, 40, 20)
     stableCoins = 1000
     tradingCoins = 0
     gross_profit = 0

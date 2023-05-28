@@ -27,6 +27,17 @@ class Strategie(ABC):
     def addStopLoss(self, stopLoss):
         self._StopLoss = stopLoss
 
+    def addStopLoss(self, value, pourcent):
+        valuePourcent = (pourcent * float(value) / 100.0)
+        self._StopLoss = float(value) - valuePourcent
+
+    def manageStopLoss(self, value, pourcent):
+        valuePourcent = (pourcent * float(value) / 100)
+        targetStopLoss = float(value) - valuePourcent
+
+        if targetStopLoss > self._StopLoss:
+            self._StopLoss = targetStopLoss
+
     def getStopLoss(self):
         return self._StopLoss
 
