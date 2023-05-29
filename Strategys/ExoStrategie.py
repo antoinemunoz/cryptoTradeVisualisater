@@ -11,19 +11,19 @@ class ExoStrategie(Strategie):
 
     def execute(self, OHLCV):
         self.update(OHLCV)
-        trend = self.getIndicator("Trendline").calculate()
+        trend = self.getIndicator("Trendline").calculate().iloc[0]
         BBuper, BBdown = self.getIndicator("BB").calculate()
 
-        if trend == "uptrend":
+        if trend == 1:
             if self.statue == "Charging" and float(OHLCV["Close"].iloc[-1]) > float(BBuper.iloc[-1]):
                 self.addStopLoss(OHLCV["Close"].iloc[-1], 0.1)
                 self.statue = "Take Profit"
                 return "BUY"
             elif self.statue == "Take Profit":
                 self.manageStopLoss(OHLCV["Close"].iloc[-1], 0.1)
-        elif trend == "trendLine":
+        elif trend == 0:
             self.statue = "Charging"
-        elif trend == "downtrend":
+        elif trend == -1:
             return "SELL"
             self.addStopLoss(0)
             self.statue = "Reloading"

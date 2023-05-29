@@ -22,8 +22,11 @@ class Trendline(Indicator):
         valuePourcent = self.pourcent * fastEMA / 100
 
         if (fastEMA - slowEMA) <= valuePourcent and (fastEMA - slowEMA) >= 0:
-            return "trendLine"
+            result = 0
         elif fastEMA > slowEMA:
-            return "uptrend"
+            result = 1
         else:
-            return "downtrend"
+            result = -1
+
+        # Convert result to a pandas Series
+        return pd.Series(result)
