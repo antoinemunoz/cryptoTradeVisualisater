@@ -39,13 +39,10 @@ class Backtester():
         return [buySignals, sellSignals]
 
     def plotStrategy(self):
-        print("Initial OHLCV:\n", self.OHLCV)
         self.OHLCV.index = pd.to_datetime(self.OHLCV.index, unit='m')
 
         columns_to_convert = ['Open', 'High', 'Low', 'Close', 'Volume']
         self.OHLCV = convert_columns_to_numeric(self.OHLCV, columns_to_convert)
-
-        print("Converted OHLCV:\n", self.OHLCV)  # Debug print
 
         custom_marketcolors = mpf.make_marketcolors(
             up='g', down='r',
