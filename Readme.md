@@ -1,118 +1,119 @@
-Hi this is my personal project for epitech, where you can use a tools for visualizing your crypto strategy, but you need it to implement it on python.
+hi This is my personal project for Epitech where you can use a tool to visualize your crypto strategy. Here are the steps to implement it in Python:
 
-For doing it:
+Step 1: Install Requirements
 
-1: install requirement
+Install the necessary Python packages:
 
-download python
-download pyp
-pip install python-binance
-pip install pandas
-pip install matplotlib
-pip install abcmeta
+    Download and install Python.
+    Download and install pip (Python package manager).
+    Install the necessary libraries with pip:
 
-after you download this following requierement, you need to create a binance api
+pip install python-binance pandas matplotlib abcmeta
 
-For doing it
+Step 2: Create a Binance Account and API
 
-2: create binance acount
-click to your profil
-->Gestion api
-->Créer api
-->Modifier les restrictions
-->activer "Permet les transferts universels"
-->activer "Activer le trading Spot et sur marge"
-->activer "Permetre la lecture"
+    Sign up for a Binance account.
+    Click on your profile.
+    Go to 'API Management'.
+    Click on 'Create API'.
+    Adjust the restrictions:
+        Enable 'Allow Universal Transfers'.
+        Enable 'Enable Spot and Margin Trading'.
+        Enable 'Allow Reading'.
 
-Nice you created you binance api, now you can integrate it to the program
+Step 3: Integrate the Binance API with the Program
 
-3: integrate it to the program
+Navigate to the Binance directory and create a Config.py file:
 
 cd Binance
 touch Config.py
 nano Config.py
 
+In Config.py, add your Binance API credentials:
+
 config = {
-    'api_key': your api key,
-    'api_secret': your api secret,
+    'api_key': 'your_api_key',
+    'api_secret': 'your_api_secret',
 }
 
-Now that you integrate it the program, is time to create your first indicator, where you can see the abstrat, (template for doing your indicators), now that you have see how its work, we gonna go step by step for doing it.
+Step 4: Create an Indicator
 
-4: create indicators
+Go to the Indicators directory and create a new Python file:
 
 cd Indicators
 touch NameIndicator.py
 
-past this to the top of the file
+Add the following code to the top of your file:
+
 from Indicators.AIndicator import Indicator
 import pandas as pd
 
-create the class
-making inerate from indicator
-ex:
-class BB(Indicator):
+Create a new class that inherits from Indicator and add your logic in the calculate method.
+
+class NameIndicators(Indicator):
     def __init__(self, column, time_period=20):
         super().__init__(column, time_period)
 
     def update(self, data):
         super().update(data)
 
-this two fonctions are juste exemple, if you want to change it, do it!
-now integrate the logic of your class on the def calculate(self):
+    def calculate(self):
+        # Implement your logic here
 
-Nice, you create your firt indicator, now you can try to create a strategy, quite the same like the indicators but there is some little detail to change
+Step 5: Create a Strategy
 
-5: create your strategy
+Navigate to the Strategys directory and create a new Python file:
+
+bash
 
 cd Strategys
 touch NameStrategy.py
 
-past this to the top of the file
+Add the following code to the top of the file:
 
 from Strategys.AStrategie import Strategie
 from Indicators.NameIndicator import NameIndicator
 
-remplace NameIndicator by the name of your indicator
+Replace NameIndicator with the name of your indicator. Then create a new class that inherits from Strategie and implements your strategy.
 
-create the class
-making inerate from Strategie
-ex:
-class BBStrategy(Strategie):
+class NameStrategy(Strategie):
     def __init__(self, bbPeriod):
         super().__init__(bbPeriod)
         self.addIndicator("BB", BB("Close", bbPeriod))
 
-integrating the logic of your class on the def execute(self, OHLCV):
+    def execute(self, OHLCV):
+        # Implement your strategy here
 
-Nice, you create your firt strategy, now you can try to add it to the main for backtesting it
+Step 6: Add Your Strategy to the Main Program
 
-6: add your strategy to the main
+Include your strategy in the main Python file:
 
-include your strategy to the main
-ex:
 from Strategys.NameStrategy import NameStrategy
-remplace NameStrategy by the name of your strategy
 
-add your strategy to the main by remplacing this line
+Replace NameStrategy with the name of your strategy and replace the existing strategy line:
+
 strategy = RSIStrategy(14, 70, 30)
 by
 strategy = NameStrategy(20)
 
-now that you implemented it, time to lunch it,
+Step 7: Download the Data
 
-but before it you need to download the data
-
-7: download the data
+Use the provided script to download the data:
 
 python3 OHLCV.py SYMBOL LIMIT INTERVAL
-for ex:
+
+For example:
+
 python3 OHLCV.py BTCUSDT 1000 min
 
-now you can lunch the backtest by doing
+Step 8: Run the Backtest
+
+You can now run the backtest:
+
 python3 main.py OHLCVBTCUSDT1000min.csv
-or the name of your csv
 
-8: enjoy
+Replace OHLCVBTCUSDT1000min.csv with the name of your data file.
 
-you can see the result on the result folder
+Step 9: Enjoy the Results
+
+You can view the results in the results folder. Happy trading!
