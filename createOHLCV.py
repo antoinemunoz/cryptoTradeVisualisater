@@ -9,7 +9,7 @@ def main(symbol, limit, interval):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python script_name.py SYMBOL INTERVAL LIMIT")
+        print("Usage: python script_name.py SYMBOL LIMIT INTERVAL")
         sys.exit(1)
 
     symbol = sys.argv[1]

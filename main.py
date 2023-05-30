@@ -8,8 +8,8 @@ import pandas as pd
 
 def main(OHLCV):
     # strategy = BBStrategy(20)
-    # strategy = RSIStrategy(14, 70, 30)
-    strategy = ExoStrategie(0.18, 20, 40, 20)
+    strategy = RSIStrategy(14, 70, 30)
+    # strategy = ExoStrategie(0.18, 20, 40, 20)
     backtester = Backtester(OHLCV)
     stableCoins = 1000
     tradingCoins = 0
